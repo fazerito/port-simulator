@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/marcin/CLionProjects/PortSo/main.cpp
+iostream
+-
+mutex
+-
+thread
+-
+chrono
+-
+ctime
+-
+

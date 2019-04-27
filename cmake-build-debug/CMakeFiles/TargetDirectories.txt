@@ -1,0 +1,3 @@
+/home/marcin/CLionProjects/PortSo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/marcin/CLionProjects/PortSo/cmake-build-debug/CMakeFiles/PortSo.dir
+/home/marcin/CLionProjects/PortSo/cmake-build-debug/CMakeFiles/edit_cache.dir
