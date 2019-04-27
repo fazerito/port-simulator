@@ -1,0 +1,1 @@
+/usr/bin/c++  -pthread -g   CMakeFiles/PortSo.dir/main.cpp.o CMakeFiles/PortSo.dir/Ship.cpp.o CMakeFiles/PortSo.dir/Dock.cpp.o CMakeFiles/PortSo.dir/Cargo.cpp.o  -o PortSo 
