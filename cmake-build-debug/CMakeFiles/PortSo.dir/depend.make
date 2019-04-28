@@ -7,7 +7,6 @@ CMakeFiles/PortSo.dir/Cargo.cpp.o: ../Cargo.h
 CMakeFiles/PortSo.dir/Dock.cpp.o: ../Cargo.h
 CMakeFiles/PortSo.dir/Dock.cpp.o: ../Dock.cpp
 CMakeFiles/PortSo.dir/Dock.cpp.o: ../Dock.h
-CMakeFiles/PortSo.dir/Dock.cpp.o: ../Ship.h
 
 CMakeFiles/PortSo.dir/Ship.cpp.o: ../Cargo.h
 CMakeFiles/PortSo.dir/Ship.cpp.o: ../Dock.h

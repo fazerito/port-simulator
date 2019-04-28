@@ -5,12 +5,9 @@
 #include <iostream>
 #include "Ship.h"
 
-Ship::Ship(int id, const std::string &name, const Cargo &cargo, int capacity)
-        : id(id),
-          name(name),
-          cargo(cargo),
-          capacity(capacity)
-          {}
+Ship::Ship(int id, const std::string &name, Cargo *cargo, int capacity) : id(id), name(name), cargo(cargo),
+                                                                          capacity(capacity) {}
+
 
 Ship::~Ship() {
     if (shipThread.joinable())
@@ -21,7 +18,7 @@ void Ship::move() {
     std::cout << "Swimming ship no: " << id;
 }
 
-Cargo Ship::getCargo() {
+Cargo* Ship::getCargo() {
     return cargo;
 }
 
@@ -37,7 +34,7 @@ int Ship::getCapacity() {
     return capacity;
 }
 
-void Ship::setCargo(Cargo cargo) {
+void Ship::setCargo(Cargo *cargo) {
     this->cargo = cargo;
 }
 
@@ -50,9 +47,9 @@ void Ship::setCapacity(int capacity) {
 }
 
 void Ship::checkCapacity(Cargo cargo) {
-    if (this->cargo.getWeight() + cargo.getWeight() <= capacity)
+    if (this->cargo->getWeight() + cargo.getWeight() <= capacity)
     {
-        this->cargo.setWeight(this->cargo.getWeight() + cargo.getWeight());
+        this->cargo->setWeight(this->cargo->getWeight() + cargo.getWeight());
 
         std::cout << "Zaladowano " << cargo.getName() << ", ilosc: " << cargo.getWeight() << "\n";
     } else
@@ -62,10 +59,10 @@ void Ship::checkCapacity(Cargo cargo) {
 
 void Ship::unloadCargo(Dock &dock) {
     std::lock_guard<std::mutex> lockGuard(dock.dockMutex);
-    if (this->cargo.getWeight() + dock.getCurrentLoad() <= dock.getCapacity()) {
-        dock.setCurrentLoad(dock.getCurrentLoad() + this->cargo.getWeight());
+    if (this->cargo->getWeight() + dock.getCurrentLoad() <= dock.getCapacity()) {
+        dock.setCurrentLoad(dock.getCurrentLoad() + this->cargo->getWeight());
         dock.getCargoList().push_back(this->cargo);
-        std::cout << "Rozladowano statek: " << id << " towar: " << cargo.getName() << std::endl;
+        std::cout << "Rozladowano statek: " << id << " towar: " << cargo->getName() << std::endl;
     }
     else
         std::cout << "Brak miejsca.\n";
@@ -78,6 +75,9 @@ void Ship::loadCargo(Cargo cargo) {
 void Ship::startThread() {
 
 }
+
+
+
 
 
 

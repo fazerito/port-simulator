@@ -14,10 +14,10 @@ private:
     int id;
     int currentLoad;
     int capacity;
-    std::vector<Cargo> cargoList;
+    std::vector<Cargo*> cargoList;
     bool isBusy;
 public:
-    Dock(int id, int currentLoad, int capacity, std::vector<Cargo> cargoList, bool isBusy);
+    Dock(int id, int currentLoad, int capacity, std::vector<Cargo*> cargoList, bool isBusy);
 
     ~Dock();
     std::mutex dockMutex;
@@ -27,12 +27,12 @@ public:
     int getId();
     int getCurrentLoad();
     int getCapacity();
-    std::vector<Cargo> getCargoList();
+    std::vector<Cargo*> getCargoList();
     bool getIsBusy();
 
     void setCurrentLoad(int currentLoad);
     void setCapacity(int capacity);
-    void setCargoList(std::vector<Cargo> cargoList);
+    void setCargoList(std::vector<Cargo*> cargoList);
     void setIsBusy(bool isBusy);
 };
 
