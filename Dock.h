@@ -13,7 +13,6 @@
 class Dock {
 private:
     int id;
-    std::mutex dockMutex;
     int currentLoad;
     int capacity;
     std::vector<Cargo> cargoList;
@@ -22,11 +21,9 @@ public:
     Dock(int id, int currentLoad, int capacity, std::vector<Cargo> cargoList, bool isBusy);
 
     ~Dock();
-
+    std::mutex dockMutex;
     void loadToShip(Cargo cargo);
     void unloadFromShip(Cargo cargo);
-    void dockShip();
-    void undockShip();
 
     int getId();
     int getCurrentLoad();

@@ -22,7 +22,7 @@ private:
 public:
     Ship(int id, std::string name, Cargo cargo, int capacity);
 
-    Ship(int id, const std::string &name, const Cargo &cargo, int capacity, const std::thread &shipThread);
+    Ship(int id, const std::string &name, const Cargo &cargo, int capacity);
     ~Ship();
 
     std::thread shipThread;
@@ -37,7 +37,7 @@ public:
     void setCapacity(int capacity);
 
     void checkCapacity(Cargo cargo);
-    Cargo unloadCargo();
+    void unloadCargo(Dock &dock);
     void move();
     void loadCargo(Cargo cargo);
     void startThread();

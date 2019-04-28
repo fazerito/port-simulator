@@ -4,7 +4,10 @@
 #include <chrono>
 #include <ctime>
 #include "Ship.h"
+#include "Dock.h"
 
+std::vector<Cargo> cargoList;
+Dock *dock = new Dock(1, 0, 1000, cargoList, false);
 /*int maxCap = 600;
 int currentCap = 0;
 std::mutex dock;
@@ -27,15 +30,20 @@ void unloadCargo(int id, int cargo)
 }*/
 
 int main() {
+    std::vector<Ship> ships;
+    ships.emplace_back(1, "Ricardo", cargoList, 200);
+    ships.emplace_back(2, "Ricardo", cargoList, 200);
+    ships.emplace_back(3, "Ricardo", cargoList, 200);
+    ships.emplace_back(4, "Ricardo", cargoList, 200);
 
-    /*std::thread ships[10];
+    ships[0].shipThread.join();
+    //std::thread ships[10];
     for (int i = 0; i < 10; ++i) {
-        ships[i] = std::thread(unloadCargo, i, 100);
+        ships[i].shipThread = std::thread(&Ship::unloadCargo, &ships[i], &dock);
     }
     for (int i = 0; i < 10; ++i) {
-        ships[i].join();
+        ships[i].shipThread.join();
     }
-*/
 
     return 0;
 }

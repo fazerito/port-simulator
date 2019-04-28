@@ -5,12 +5,12 @@
 #include <iostream>
 #include "Ship.h"
 
-Ship::Ship(int id, const std::string &name, const Cargo &cargo, int capacity, const std::thread &shipThread)
+Ship::Ship(int id, const std::string &name, const Cargo &cargo, int capacity)
         : id(id),
           name(name),
           cargo(cargo),
-          capacity(capacity),
-          shipThread(&Ship::startThread, this) {}
+          capacity(capacity)
+          {}
 
 Ship::~Ship() {
     if (shipThread.joinable())
@@ -53,14 +53,22 @@ void Ship::checkCapacity(Cargo cargo) {
     if (this->cargo.getWeight() + cargo.getWeight() <= capacity)
     {
         this->cargo.setWeight(this->cargo.getWeight() + cargo.getWeight());
+
         std::cout << "Zaladowano " << cargo.getName() << ", ilosc: " << cargo.getWeight() << "\n";
     } else
         std::cout << "Brak miejsca na statku\n";
 
 }
 
-Cargo Ship::unloadCargo() {
-    return this->cargo;
+void Ship::unloadCargo(Dock &dock) {
+    std::lock_guard<std::mutex> lockGuard(dock.dockMutex);
+    if (this->cargo.getWeight() + dock.getCurrentLoad() <= dock.getCapacity()) {
+        dock.setCurrentLoad(dock.getCurrentLoad() + this->cargo.getWeight());
+        dock.getCargoList().push_back(this->cargo);
+        std::cout << "Rozladowano statek: " << id << " towar: " << cargo.getName() << std::endl;
+    }
+    else
+        std::cout << "Brak miejsca.\n";
 }
 
 void Ship::loadCargo(Cargo cargo) {

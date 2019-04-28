@@ -19,13 +19,6 @@ void Dock::unloadFromShip(Cargo cargo) {
 
 }
 
-void Dock::dockShip() {
-    this->dockMutex.lock();
-}
-
-void Dock::undockShip() {
-    this->dockMutex.unlock();
-}
 
 void Dock::loadToShip(Cargo cargo) {
 
