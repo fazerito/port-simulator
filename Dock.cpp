@@ -6,9 +6,9 @@
 
 #include "Dock.h"
 
-Dock::Dock(int id, const std::mutex &dockMutex, int currentLoad, int capacity, std::vector<Cargo> cargoList,
-           bool isBusy, Ship &servedShip) : id(id), currentLoad(currentLoad), capacity(capacity),
-                                            cargoList(std::move(cargoList)), isBusy(isBusy), servedShip(servedShip) {}
+Dock::Dock(int id, int currentLoad, int capacity, std::vector<Cargo*> cargoList,
+           bool isBusy) : id(id), currentLoad(currentLoad), capacity(capacity),
+                                            cargoList(std::move(cargoList)), isBusy(isBusy) {}
 
 Dock::~Dock() {
 
@@ -19,13 +19,6 @@ void Dock::unloadFromShip(Cargo cargo) {
 
 }
 
-void Dock::dockShip() {
-
-}
-
-void Dock::undockShip() {
-
-}
 
 void Dock::loadToShip(Cargo cargo) {
 
@@ -43,7 +36,7 @@ int Dock::getCapacity() {
     return capacity;
 }
 
-std::vector<Cargo> Dock::getCargoList() {
+std::vector<Cargo*> Dock::getCargoList() {
     return cargoList;
 }
 
@@ -59,7 +52,7 @@ void Dock::setCapacity(int capacity) {
     this->capacity = capacity;
 }
 
-void Dock::setCargoList(std::vector<Cargo> cargoList) {
+void Dock::setCargoList(std::vector<Cargo*> cargoList) {
     this->cargoList = cargoList;
 }
 

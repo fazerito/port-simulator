@@ -14,27 +14,32 @@ class Ship {
 private:
     int id;
     std::string name;
-    Cargo cargo;
+    Cargo *cargo;
     int capacity;
-    std::thread shipThread;
 
 
 
 public:
-    Ship(int id, std::string name, Cargo cargo, int capacity);
+    Ship(int id, const std::string &name, const Cargo *cargo, int capacity);
+
+    Ship(int id, const std::string &name, Cargo *cargo, int capacity);
+
+
     ~Ship();
 
-    Cargo getCargo();
+    std::thread shipThread;
+
+    Cargo* getCargo();
     int getId();
     std::string getName();
     int getCapacity();
 
-    void setCargo(Cargo cargo);
+    void setCargo(Cargo *cargo);
     void setName(std::string name);
     void setCapacity(int capacity);
 
     void checkCapacity(Cargo cargo);
-    Cargo unloadCargo();
+    void unloadCargo(Dock &dock);
     void move();
     void loadCargo(Cargo cargo);
     void startThread();

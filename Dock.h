@@ -8,38 +8,31 @@
 #include <mutex>
 #include <vector>
 #include "Cargo.h"
-#include "Ship.h"
 
 class Dock {
 private:
     int id;
-    std::mutex dockMutex;
     int currentLoad;
     int capacity;
-    std::vector<Cargo> cargoList;
+    std::vector<Cargo*> cargoList;
     bool isBusy;
-    Ship &servedShip;
 public:
-    Dock(int id, int currentLoad, int capacity, std::vector<Cargo> cargoList, bool isBusy);
+    Dock(int id, int currentLoad, int capacity, std::vector<Cargo*> cargoList, bool isBusy);
+
     ~Dock();
-
-    Dock(int id, const std::mutex &dockMutex, int currentLoad, int capacity, std::vector<Cargo> cargoList,
-         bool isBusy, Ship &servedShip);
-
+    std::mutex dockMutex;
     void loadToShip(Cargo cargo);
     void unloadFromShip(Cargo cargo);
-    void dockShip();
-    void undockShip();
 
     int getId();
     int getCurrentLoad();
     int getCapacity();
-    std::vector<Cargo> getCargoList();
+    std::vector<Cargo*> getCargoList();
     bool getIsBusy();
 
     void setCurrentLoad(int currentLoad);
     void setCapacity(int capacity);
-    void setCargoList(std::vector<Cargo> cargoList);
+    void setCargoList(std::vector<Cargo*> cargoList);
     void setIsBusy(bool isBusy);
 };
 
