@@ -30,12 +30,12 @@ void unloadCargo(int id, int cargo)
     dock.unlock();
 }*/
 
-void unloadCargo(Ship &ship, Dock &dock2) {
-    std::lock_guard<std::mutex> lockGuard(dock2.dockMutex);
-    if (ship.getCargo()->getWeight() + dock2.getCurrentLoad() <= dock2.getCapacity()) {
-        dock2.setCurrentLoad(dock2.getCurrentLoad() + ship.getCargo()->getWeight());
-        dock2.getCargoList().push_back(ship.getCargo());
-        std::cout << "Rozladowano statek: " << ship.getId() << " towar: " << ship.getCargo()->getName() << std::endl;
+void unloadCargo(Ship *ship, Dock *dock2) {
+    std::lock_guard<std::mutex> lockGuard(dock2->dockMutex);
+    if (ship->getCargo()->getWeight() + dock2->getCurrentLoad() <= dock2->getCapacity()) {
+        dock2->setCurrentLoad(dock2->getCurrentLoad() + ship->getCargo()->getWeight());
+        dock2->getCargoList().push_back(ship->getCargo());
+        std::cout << "Rozladowano statek: " << ship->getId() << " towar: " << ship->getCargo()->getName() << std::endl;
     }
     else
         std::cout << "Brak miejsca.\n";
@@ -58,7 +58,7 @@ int main() {
 
     std::thread handles[4];
     for (int i = 0; i < 4; ++i) {
-        handles[i] = std::thread(unloadCargo, &ships[i], &dock);
+        handles[i] = std::thread(unloadCargo, std::ref(ships[i]), std::ref(dock));
     }
     for (int i = 0; i < 4; ++i) {
         handles[i].join();
