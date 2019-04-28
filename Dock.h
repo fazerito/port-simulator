@@ -8,7 +8,6 @@
 #include <mutex>
 #include <vector>
 #include "Cargo.h"
-#include "Ship.h"
 
 class Dock {
 private:

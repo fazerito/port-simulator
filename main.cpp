@@ -30,19 +30,23 @@ void unloadCargo(int id, int cargo)
 }*/
 
 int main() {
-    std::vector<Ship> ships;
-    ships.emplace_back(1, "Ricardo", cargoList, 200);
-    ships.emplace_back(2, "Ricardo", cargoList, 200);
-    ships.emplace_back(3, "Ricardo", cargoList, 200);
-    ships.emplace_back(4, "Ricardo", cargoList, 200);
+    Cargo cargo1;
+    std::vector<Ship*> ships;
+    Ship *ship1 = new Ship(1, "Ricardo", cargo1, 100);
+    Ship *ship2 = new Ship(2, "Milos", cargo1, 100);
+    Ship *ship3 = new Ship(3, "Billy", cargo1, 100);
+    Ship *ship4 = new Ship(4, "Herrington", cargo1, 100);
+    ships.push_back(ship1);
+    ships.push_back(ship2);
+    ships.push_back(ship3);
+    ships.push_back(ship4);
 
-    ships[0].shipThread.join();
     //std::thread ships[10];
-    for (int i = 0; i < 10; ++i) {
-        ships[i].shipThread = std::thread(&Ship::unloadCargo, &ships[i], &dock);
+    for (int i = 0; i < 4; ++i) {
+        ships[i]->shipThread = std::thread(&Ship::unloadCargo, dock);
     }
-    for (int i = 0; i < 10; ++i) {
-        ships[i].shipThread.join();
+    for (int i = 0; i < 4; ++i) {
+        ships[i]->shipThread.join();
     }
 
     return 0;

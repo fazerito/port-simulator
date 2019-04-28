@@ -20,8 +20,6 @@ private:
 
 
 public:
-    Ship(int id, std::string name, Cargo cargo, int capacity);
-
     Ship(int id, const std::string &name, const Cargo &cargo, int capacity);
     ~Ship();
 
