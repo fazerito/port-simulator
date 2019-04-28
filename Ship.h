@@ -16,13 +16,16 @@ private:
     std::string name;
     Cargo cargo;
     int capacity;
-    std::thread shipThread;
 
 
 
 public:
     Ship(int id, std::string name, Cargo cargo, int capacity);
+
+    Ship(int id, const std::string &name, const Cargo &cargo, int capacity, const std::thread &shipThread);
     ~Ship();
+
+    std::thread shipThread;
 
     Cargo getCargo();
     int getId();

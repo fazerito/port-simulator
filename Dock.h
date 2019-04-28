@@ -18,13 +18,10 @@ private:
     int capacity;
     std::vector<Cargo> cargoList;
     bool isBusy;
-    Ship &servedShip;
 public:
     Dock(int id, int currentLoad, int capacity, std::vector<Cargo> cargoList, bool isBusy);
-    ~Dock();
 
-    Dock(int id, const std::mutex &dockMutex, int currentLoad, int capacity, std::vector<Cargo> cargoList,
-         bool isBusy, Ship &servedShip);
+    ~Dock();
 
     void loadToShip(Cargo cargo);
     void unloadFromShip(Cargo cargo);
