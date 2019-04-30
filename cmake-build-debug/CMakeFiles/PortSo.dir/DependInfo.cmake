@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pietrek-kogucik/CLionProjects/port-simulator/Cargo.cpp" "/home/pietrek-kogucik/CLionProjects/port-simulator/cmake-build-debug/CMakeFiles/PortSo.dir/Cargo.cpp.o"
-  "/home/pietrek-kogucik/CLionProjects/port-simulator/Dock.cpp" "/home/pietrek-kogucik/CLionProjects/port-simulator/cmake-build-debug/CMakeFiles/PortSo.dir/Dock.cpp.o"
-  "/home/pietrek-kogucik/CLionProjects/port-simulator/Ship.cpp" "/home/pietrek-kogucik/CLionProjects/port-simulator/cmake-build-debug/CMakeFiles/PortSo.dir/Ship.cpp.o"
-  "/home/pietrek-kogucik/CLionProjects/port-simulator/main.cpp" "/home/pietrek-kogucik/CLionProjects/port-simulator/cmake-build-debug/CMakeFiles/PortSo.dir/main.cpp.o"
+  "/home/marcin/CLionProjects/PortSo/Cargo.cpp" "/home/marcin/CLionProjects/PortSo/cmake-build-debug/CMakeFiles/PortSo.dir/Cargo.cpp.o"
+  "/home/marcin/CLionProjects/PortSo/Dock.cpp" "/home/marcin/CLionProjects/PortSo/cmake-build-debug/CMakeFiles/PortSo.dir/Dock.cpp.o"
+  "/home/marcin/CLionProjects/PortSo/Ship.cpp" "/home/marcin/CLionProjects/PortSo/cmake-build-debug/CMakeFiles/PortSo.dir/Ship.cpp.o"
+  "/home/marcin/CLionProjects/PortSo/main.cpp" "/home/marcin/CLionProjects/PortSo/cmake-build-debug/CMakeFiles/PortSo.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

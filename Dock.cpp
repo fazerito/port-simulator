@@ -59,6 +59,3 @@ void Dock::setCargoList(std::vector<Cargo*> cargoList) {
 void Dock::setIsBusy(bool isBusy) {
     this->isBusy = isBusy;
 }
-
-
-

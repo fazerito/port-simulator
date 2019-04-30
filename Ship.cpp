@@ -75,10 +75,3 @@ void Ship::loadCargo(Cargo cargo) {
 void Ship::startThread() {
 
 }
-
-
-
-
-
-
-
