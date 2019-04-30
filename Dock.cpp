@@ -8,7 +8,7 @@
 
 Dock::Dock(int id, int currentLoad, int capacity, std::vector<Cargo*> cargoList,
            bool isBusy) : id(id), currentLoad(currentLoad), capacity(capacity),
-                                            cargoList(std::move(cargoList)), isBusy(isBusy) {}
+                          cargoList(std::move(cargoList)), isBusy(isBusy) {}
 
 Dock::~Dock() {
 

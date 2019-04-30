@@ -56,12 +56,11 @@ int main() {
     ships.push_back(ship3);
     ships.push_back(ship4);
 
-    std::thread handles[4];
     for (int i = 0; i < 4; ++i) {
-        handles[i] = std::thread(unloadCargo, std::ref(ships[i]), std::ref(dock));
+        ships[i]->shipThread = std::thread(unloadCargo, std::ref(ships[i]), std::ref(dock));
     }
     for (int i = 0; i < 4; ++i) {
-        handles[i].join();
+        ships[i]->shipThread.join();
     }
     return 0;
 }
