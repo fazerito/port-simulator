@@ -7,8 +7,9 @@
 #include "Ship.h"
 #include "Dock.h"
 #include "Cargo.h"
+#include "Window.h"
+#include <ncurses.h>
 
-Dock *dock;
 //int maxCap = 600;
 //int currentCap = 0;
 //std::mutex dock;
@@ -28,7 +29,7 @@ void unloadCargo(int id, int cargo)
         std::cout << "Current load is " << currentCap << std::endl;
     }
     dock.unlock();
-}*/
+}
 
 void unloadCargo(Ship *ship, Dock *dock2) {
     std::lock_guard<std::mutex> lockGuard(dock2->dockMutex);
@@ -39,10 +40,10 @@ void unloadCargo(Ship *ship, Dock *dock2) {
     }
     else
         std::cout << "Brak miejsca.\n";
-}
+}*/
 
 int main() {
-    std::vector<Cargo*> cargoList;
+    /*std::vector<Cargo*> cargoList;
     dock = new Dock(1, 0, 1000, cargoList, false);
     Cargo *cargo1 = new Cargo("Banany", 10);
 
@@ -61,6 +62,10 @@ int main() {
     }
     for (int i = 0; i < 4; ++i) {
         ships[i]->shipThread.join();
-    }
+    }*/
+
+    Window window(30,148);
+    window.startWindow();
+
     return 0;
 }

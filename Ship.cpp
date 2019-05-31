@@ -5,9 +5,14 @@
 #include <iostream>
 #include "Ship.h"
 
-Ship::Ship(int id, const std::string &name, Cargo *cargo, int capacity) : id(id), name(name), cargo(cargo),
-                                                                          capacity(capacity) {}
-
+Ship::Ship(int x){
+    srand(time(NULL));
+    dockingTime = rand()%400 + 2400;
+    swimmingSpeed = rand()%100 + 100;
+    positionX = x;
+    color = rand()%4 + 1;
+    cargo = new Cargo("cargo", rand()%1000 + 100);
+}
 
 Ship::~Ship() {
     if (shipThread.joinable())
@@ -74,4 +79,24 @@ void Ship::loadCargo(Cargo cargo) {
 
 void Ship::startThread() {
 
+}
+
+int Ship::getPositionX() {
+    return positionX;
+}
+
+int Ship::getColor() {
+    return color;
+}
+
+int Ship::getDockingTime() {
+    return dockingTime;
+}
+
+void Ship::setPositionX(int x) {
+    this->positionX = x;
+}
+
+int Ship::getSwimmingSpeed() {
+    return swimmingSpeed;
 }
