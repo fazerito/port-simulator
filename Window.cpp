@@ -49,7 +49,7 @@ void Window::startWindow() {
         queueCondition.push_back(new std::condition_variable);
         threadsOnCheck.push_back(true);
         threadVect.push_back(std::thread([&](){useShipWithThreads(i);}));
-        sleep(3);
+        sleep(5);
         for(long unsigned int j = 0; j < threadsOnCheck.size(); j++){
             if(!threadsOnCheck[j])
                 if(threadVect[j].joinable())
@@ -84,13 +84,25 @@ void Window::baseDraw() {
     for(int i = 3; i < 144; i++)
         mvwprintw(window, 8, i, "-");
 
-    //lada
-    mvwprintw(window, 14, 3, "|");
-    mvwprintw(window, 14, 144, "|");
-    for(int i = 3; i < 145; i++){
-        mvwprintw(window, 13, i, "-");
-        mvwprintw(window, 15, i, "-");
+    //dok
+    for (int k = 9; k < 15 ; ++k) {
+        mvwprintw(window, k, 25, "|");
     }
+    for (int k = 9; k < 15 ; ++k) {
+        mvwprintw(window, k, 55, "|");
+    }
+    for(int i = 26; i < 55; i++){
+
+        mvwprintw(window, 11, i, "-");
+        mvwprintw(window, 14, i, "_");
+    }
+
+    mvwprintw(window, 15, 30, "\\");
+    mvwprintw(window, 15, 50, "/");
+    for (int l = 31; l < 49; ++l) {
+        mvwprintw(window, 15, l, "=");
+    }
+
 
     drawMutex.unlock();
     wrefresh(window);
@@ -146,7 +158,7 @@ void Window::drawDock() {
 
 void Window::drawCargo(int startingPointX, std::vector<Cargo> cargos) {
     if (cargos.size() > 0) {
-        drawSomeCargo(startingPointX, 7, '#', cargos.size());
+        drawSomeCargo(startingPointX, 7, '#', 0);
     }
 }
 
@@ -159,8 +171,7 @@ void Window::drawSomeCargo(int startX, int startY, char cargo, int cargoNum) {
 
 void Window::drawRow(int startX, int startY, char cargoChar, int cargoNum) {
     const char *cargo = new char(cargoChar);
-    for(int i = startX; i < cargoNum + startX; i++)
-        mvwprintw(window, startY, i, cargo);
+        mvwprintw(window, startY, startX, cargo);
 }
 
 void Window::clearCargo(int startingPointX) {
@@ -207,6 +218,7 @@ void Window::useShipWithThreads(int threadId) {
                     shipVector[threadId]->setPositionX(shipVector[threadId]->getPositionX() - 1);
                     drawShip(threadId);
                 }
+
             }else{
                 if(canShipSwim(threadId)){
                     eraseShip(threadId);
@@ -234,11 +246,12 @@ bool Window::canDoUnload(int shipId) {
         cargoMutex.unlock();
         return false;
     }
+    cargoMutex.unlock();
+    return true;
 }
 
 void Window::unload(int shipId) {
     cargoMutex.lock();
-    //for(int i = 0; i < shipVector[shipId]->getCargo()->getWeight(); i++)
         cargoVec.push_back(*shipVector[shipId]->getCargo());
     cargoMutex.unlock();
 }
