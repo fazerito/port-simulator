@@ -10,18 +10,11 @@ Ship::Ship(int x){
     dockingTime = rand()%400 + 2400;
     swimmingSpeed = rand()%100 + 100;
     positionX = x;
-    color = rand()%4 + 1;
     cargo = new Cargo("cargo", rand()%1000 + 100);
 }
 
-Ship::~Ship() {
-    if (shipThread.joinable())
-        shipThread.detach();
-}
 
-void Ship::move() {
-    std::cout << "Swimming ship no: " << id;
-}
+
 
 Cargo* Ship::getCargo() {
     return cargo;
@@ -31,9 +24,6 @@ int Ship::getId() {
     return id;
 }
 
-std::string Ship::getName() {
-    return name;
-}
 
 int Ship::getCapacity() {
     return capacity;
@@ -43,9 +33,6 @@ void Ship::setCargo(Cargo *cargo) {
     this->cargo = cargo;
 }
 
-void Ship::setName(std::string name) {
-    this->name = name;
-}
 
 void Ship::setCapacity(int capacity) {
     this->capacity = capacity;
@@ -61,33 +48,10 @@ void Ship::checkCapacity(Cargo cargo) {
         std::cout << "Brak miejsca na statku\n";
 
 }
-
-void Ship::unloadCargo(Dock &dock) {
-    std::lock_guard<std::mutex> lockGuard(dock.dockMutex);
-    if (this->cargo->getWeight() + dock.getCurrentLoad() <= dock.getCapacity()) {
-        dock.setCurrentLoad(dock.getCurrentLoad() + this->cargo->getWeight());
-        dock.getCargoList().push_back(this->cargo);
-        std::cout << "Rozladowano statek: " << id << " towar: " << cargo->getName() << std::endl;
-    }
-    else
-        std::cout << "Brak miejsca.\n";
-}
-
-void Ship::loadCargo(Cargo cargo) {
-    checkCapacity(cargo);
-}
-
-void Ship::startThread() {
-
-}
-
 int Ship::getPositionX() {
     return positionX;
 }
 
-int Ship::getColor() {
-    return color;
-}
 
 int Ship::getDockingTime() {
     return dockingTime;

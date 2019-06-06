@@ -20,7 +20,7 @@ private:
     int width;
     int height;
     char symbol;
-    std::vector<Cargo> cargoVec;
+    int cargoWeight;
     std::vector<bool> threadsOnCheck;
     std::vector<Ship *> shipVector;
     std::mutex shipVectMutex;
@@ -29,6 +29,8 @@ private:
     std::vector<std::condition_variable *> queueCondition;
 
 public:
+    int position;
+
     Window(int height, int width);
     ~Window();
     void createCargoVectors();
@@ -37,14 +39,9 @@ public:
     void drawShip(int customerId);
     void eraseShip(int customerId);
     void drawDock();
-    void drawCargo(int startingPointX, std::vector<Cargo> cargos);
-    void drawSomeCargo(int startX, int startY, char vegetable, int vegeNumber);
-    void drawRow(int startX, int startY, char vegetableChar, int vegeNumber);
+    void drawCargo(int startingPointX, int startingPointY);
     void clearCargo(int startingPointX);
-    void deliveryThread();
-    void drawDelivery(int x);
-    void eraseDelivery(int x);
-    void supplyDelivery();
+
     void useShipWithThreads(int threadId);
     bool canDoUnload(int customerId);
     void unload(int customerId);

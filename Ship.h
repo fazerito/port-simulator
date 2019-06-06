@@ -13,43 +13,32 @@
 class Ship {
 private:
     int id;
-    std::string name;
     Cargo *cargo;
     int capacity;
 
     int positionX;
     int dockingTime;
     int swimmingSpeed;
-    short int color;
 
 
 public:
-    Ship(int id, const std::string &name, const Cargo *cargo, int capacity);
     Ship(int x);
-    Ship(int id, const std::string &name, Cargo *cargo, int capacity);
 
 
     ~Ship();
 
-    std::thread shipThread;
-
     Cargo* getCargo();
     int getId();
-    std::string getName();
+
     int getCapacity();
     int getPositionX();
-    int getColor();
     int getDockingTime();
     int getSwimmingSpeed();
     void setCargo(Cargo *cargo);
-    void setName(std::string name);
+
     void setCapacity(int capacity);
     void setPositionX(int x);
     void checkCapacity(Cargo cargo);
-    void unloadCargo(Dock &dock);
-    void move();
-    void loadCargo(Cargo cargo);
-    void startThread();
 };
 
 
